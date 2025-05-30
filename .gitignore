@@ -95,3 +95,4 @@ core/
 /portal/web/sites/default/default.settings.php
 /portal/web/sites/default/services.yml
 /portal/web/sites/default/sync/.htaccess
+/portal/web/modules/contrib
