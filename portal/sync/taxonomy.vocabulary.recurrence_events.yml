@@ -1,0 +1,9 @@
+uuid: 423ca18e-657a-46cf-9730-04c41eea7ab7
+langcode: en
+status: true
+dependencies: {  }
+name: 'Recurrence Events'
+vid: recurrence_events
+description: null
+weight: 0
+new_revision: false
