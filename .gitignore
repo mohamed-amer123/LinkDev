@@ -84,4 +84,14 @@ core/
 /portal/web/update.php
 /portal/web/themes/README.txt
 /portal/web/robots.txt
-/portal/web/sites
+/portal/web/sites/default/files
+/portal/web/sites/README.txt
+/portal/web/sites/example.settings.local.php
+/portal/web/sites/example.sites.php
+/portal/web/sites/development.local.services.yml
+/portal/web/sites/development.services.yml
+/portal/web/sites/default/settings.local.php
+/portal/web/sites/default/default.services.yml
+/portal/web/sites/default/default.settings.php
+/portal/web/sites/default/services.yml
+/portal/web/sites/default/sync/.htaccess
