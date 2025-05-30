@@ -1,0 +1,9 @@
+uuid: a463051a-2daa-4bb4-a91d-52256e0cf08b
+langcode: en
+status: true
+dependencies: {  }
+id: organizer_role
+label: 'Organizer Role'
+weight: 4
+is_admin: false
+permissions: {  }
