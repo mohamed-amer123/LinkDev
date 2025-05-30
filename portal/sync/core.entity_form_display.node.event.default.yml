@@ -26,12 +26,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_category_of_event:
-    type: string_textfield
+    type: options_select
     weight: 5
     region: content
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_description:
     type: string_textarea

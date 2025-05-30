@@ -1,17 +1,16 @@
-uuid: ab176c35-1291-498f-8d46-d8f741005f91
+uuid: ec1f2b69-4666-4bd5-b4ef-530d8bfa6708
 langcode: en
 status: true
 dependencies:
   module:
     - node
+    - taxonomy
 id: node.field_category_of_event
 field_name: field_category_of_event
 entity_type: node
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1
