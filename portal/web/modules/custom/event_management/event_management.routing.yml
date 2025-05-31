@@ -1,0 +1,15 @@
+event_management.config:
+  path: '/admin/config/system/config'
+  defaults:
+    _title: 'Event Management Configurations'
+    _form: 'Drupal\event_management\Form\ConfigForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+event_management.list_next_events:
+  path: '/api/event-management/list-next-events'
+  defaults:
+    _title: 'List Next Events'
+    _controller: '\Drupal\event_management\Controller\EventManagementController::list'
+  requirements:
+    _permission: 'access content'
