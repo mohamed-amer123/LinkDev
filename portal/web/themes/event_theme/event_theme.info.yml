@@ -1,0 +1,10 @@
+name: event_theme
+type: theme
+base theme: olivero
+description: A flexible theme with a responsive, mobile-first layout.
+package: Custom
+core_version_requirement: ^10 || ^11
+libraries:
+  - event_theme/global
+  - event_theme/bootstrap
+
