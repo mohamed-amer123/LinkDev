@@ -1,10 +1,12 @@
-uuid: 2c324e79-67c9-4b62-a795-908e6164ae12
+uuid: 2f3d44a7-d2f6-4892-96b0-b4142ebcde9f
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_description
     - node.type.event
+  module:
+    - text
 id: node.event.field_description
 field_name: field_description
 entity_type: node
@@ -15,5 +17,6 @@ required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string_long
+settings:
+  allowed_formats: {  }
+field_type: text_long
