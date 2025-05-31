@@ -1,18 +1,26 @@
 <?php
 use \Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
 
 /**
-* Implements hook_form_alter().
+* Implements hook_form_FORM_ID_alter().
 */
-
-function event_management_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-    $route_name = \Drupal::routeMatch()->getRouteName();
-    if (($form_id == "node_event_form" && $route_name == "node.add") || ($form_id = "node_event_edit_form" && $route_name == "entity.node.edit_form")) {
-        $form["#validate"][] = "event_management_validation";
-        $form["actions"]["submit"]["#access"] = true;
-    }
+function event_management_form_node_event_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $form["#validate"][] = "event_management_validation";
+    $form["actions"]["submit"]["#access"] = true;
 }
-
+function event_management_form_node_event_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $form["#validate"][] = "event_management_validation";
+    $form["actions"]["submit"]["#access"] = true;
+}
+function event_management_form_node_session_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $form["#validate"][] = "event_management_session_validation";
+    $form["actions"]["submit"]["#access"] = true;
+}
+function event_management_form_node_session_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $form["#validate"][] = "event_management_session_validation";
+    $form["actions"]["submit"]["#access"] = true;
+}
 function event_management_validation(&$form, FormStateInterface $form_state){
     $values = $form_state->getValues();
     /**
@@ -29,5 +37,35 @@ function event_management_validation(&$form, FormStateInterface $form_state){
     }
     if ($start_date->getTimestamp() >= $end_date->getTimestamp()) {
         $form_state->setErrorByName("field_end_date",t("End Date must be grater than Start Date."));
+    }
+}
+function event_management_session_validation(&$form, FormStateInterface $form_state){
+    $values = $form_state->getValues();
+    $event_id = $values["field_belongs_to_event"][0]["target_id"];
+    $event = Node::load($event_id);
+    $event_start = $event->get('field_start_date')->date->getTimestamp();
+    $event_end = $event->get('field_end_date')->date->getTimestamp();
+    /**
+     * @var \Drupal\Core\Datetime\DrupalDateTime $end_date
+     */
+    $session_end = $values["field_session_end_date"][0]["value"]->getTimestamp();
+    /**
+     * @var \Drupal\Core\Datetime\DrupalDateTime $start_date
+     */
+    $session_start = $values["field_session_start_date"][0]["value"]->getTimestamp();
+    // dump($event_start);
+    // dump($event_end);
+    // dump($session_start);
+    // dd($session_end);
+    if ($session_start < $event_start || $session_start > $event_end) {
+        $form_state->setErrorByName("field_session_start_date",t("Session start must be in event period."));
+        return;
+    }
+    if ($session_end < $event_start || $session_start > $event_end) {
+        $form_state->setErrorByName("field_session_end_date",t("Session end must be in event period."));
+        return;
+    }
+    if ($session_start >= $session_end) {
+        $form_state->setErrorByName("field_session_start_date",t("Session start must be less than session end."));
     }
 }
