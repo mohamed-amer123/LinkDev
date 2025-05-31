@@ -1,0 +1,11 @@
+uuid: 870c960a-3a04-4a68-b63e-8e588953ddf5
+langcode: en
+status: false
+dependencies: {  }
+id: register_event
+label: 'register event'
+uid: false
+created: false
+changed: false
+title: false
+standalone_url: true

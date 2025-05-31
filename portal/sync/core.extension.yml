@@ -16,10 +16,13 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
+  devel_generate: 0
   dynamic_page_cache: 0
+  eck: 0
   editor: 0
   event: 0
   event_management: 0
+  event_registration: 0
   field: 0
   field_ui: 0
   file: 0
@@ -42,8 +45,10 @@ module:
   taxonomy: 0
   text: 0
   toolbar: 0
+  twig_handler: 0
   user: 0
   views_ui: 0
+  workflows: 0
   views: 10
   standard: 1000
 theme:

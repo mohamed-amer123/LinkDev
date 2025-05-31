@@ -1,0 +1,30 @@
+uuid: dd2392f9-a661-4210-a0d6-f92332ec63c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.register_event.registration
+    - field.field.register_event.registration.field_event
+    - field.field.register_event.registration.field_registered_user
+id: register_event.registration.default
+targetEntityType: register_event
+bundle: registration
+mode: default
+content:
+  field_event:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_registered_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

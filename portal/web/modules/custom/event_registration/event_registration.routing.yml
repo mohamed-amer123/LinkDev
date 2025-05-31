@@ -1,0 +1,7 @@
+event_registration.controller:
+  path: '/event-registration/controller/{event}'
+  defaults:
+    _title: 'Controller'
+    _controller: '\Drupal\event_registration\Controller\EventRegistrationController::register_user'
+  requirements:
+    _permission: 'access content'

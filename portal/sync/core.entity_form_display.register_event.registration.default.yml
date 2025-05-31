@@ -1,0 +1,34 @@
+uuid: 7a3ec344-c578-4717-a5aa-b90a1599ad1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.register_event.registration
+    - field.field.register_event.registration.field_event
+    - field.field.register_event.registration.field_registered_user
+id: register_event.registration.default
+targetEntityType: register_event
+bundle: registration
+mode: default
+content:
+  field_event:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_registered_user:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

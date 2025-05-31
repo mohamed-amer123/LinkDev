@@ -1,0 +1,20 @@
+uuid: 2d01b734-140e-4632-8ff6-b2bb50cdfc78
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - user
+id: register_event.field_registered_user
+field_name: field_registered_user
+entity_type: register_event
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
