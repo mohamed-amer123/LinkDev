@@ -78,6 +78,12 @@ final class ConfigForm extends ConfigFormBase {
       }
     }
     $config->save();
+    \Drupal::cache('menu')->deleteAll(); // Menu tree
+    \Drupal::service('router.builder')->rebuild(); // If route visibility changes
+    \Drupal::service('cache_tags.invalidator')->invalidateTags([
+      'rendered',
+      'config:system.menu.main', // Replace with your menu name
+    ]);
     parent::submitForm($form, $form_state);
   }
 

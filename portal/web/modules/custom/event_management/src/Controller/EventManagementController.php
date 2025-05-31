@@ -33,6 +33,7 @@ final class EventManagementController extends ControllerBase {
     $events = [];
     foreach ($nodes as $node) {
       $events[] = [
+        'id' => $node->id(),
         'title' => $node->label(),
         'description' => $node->get("field_description")->value,
         'start_date' => $node->get('field_start_date')->date->getTimestamp(),

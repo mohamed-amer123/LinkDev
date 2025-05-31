@@ -1,6 +1,8 @@
 <?php
 use \Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
+use Drupal\views\Plugin\views\cache\CachePluginBase;
+use Drupal\views\ViewExecutable;
 
 /**
 * Implements hook_form_FORM_ID_alter().
@@ -53,10 +55,6 @@ function event_management_session_validation(&$form, FormStateInterface $form_st
      * @var \Drupal\Core\Datetime\DrupalDateTime $start_date
      */
     $session_start = $values["field_session_start_date"][0]["value"]->getTimestamp();
-    // dump($event_start);
-    // dump($event_end);
-    // dump($session_start);
-    // dd($session_end);
     if ($session_start < $event_start || $session_start > $event_end) {
         $form_state->setErrorByName("field_session_start_date",t("Session start must be in event period."));
         return;
@@ -67,5 +65,47 @@ function event_management_session_validation(&$form, FormStateInterface $form_st
     }
     if ($session_start >= $session_end) {
         $form_state->setErrorByName("field_session_start_date",t("Session start must be less than session end."));
+    }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function event_management_views_data_alter(&$data): void {
+  $data['node_field_data']['field_event_filter'] =
+  [
+    'title' => t('Filter events by user role'),
+    'filter' => [
+      'group' => t('Content'),
+      'title' => t('Events by role'),
+      'id' => 'filter_by_role',
+    ],
+  ];
+}
+
+/**
+* Implements hook_views_post_render().
+*/
+function event_management_views_post_render(ViewExecutable $view, &$output, CachePluginBase $cache) {
+    // display only selected items from config form 
+    $event_number = \Drupal::config("event_management.settings")->get("event_number");
+    if ($event_number>0) {
+        if ($view->id() == "events") {
+            $output["#rows"][0]["#rows"] = array_slice($output["#rows"][0]["#rows"], 0, $event_number);
+        }
+    }
+}
+
+/**
+* Implements hook_views_pre_execute().
+*/
+function event_management_views_pre_execute(ViewExecutable $view) {
+    // display items in pagination but need more work and testing.
+    $event_number = \Drupal::config("event_management.settings")->get("event_number");
+    if ($view->id() === 'events' && $view->current_display === 'page_1') {
+        // $view->setItemsPerPage($event_number);
+        if (isset($view->pager->options)) {
+            // $view->pager->options['items_per_page'] = $event_number;
+        }
     }
 }
