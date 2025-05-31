@@ -1,0 +1,105 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set nid = fields.nid.content|striptags|trim %}
+{% set is_registered = check_event_register(nid) %}
+<article class="event-wrapper mb-10 border-b border-gray-300 pb-6">
+<div class="text-right mb-4" style="
+    float: right;
+">
+{% if is_registered == 0 %}
+  <form action="/event-registration/controller/{{ nid }}" method="post" class="mb-4">
+    <button type="submit" class="btn btn-success bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700">
+      Register for Event
+    </button>
+  </form>
+{% else %}
+  <p class="btn btn-warning text-green-600 font-semibold mb-4">You are already registered for this event.</p>
+{% endif %}
+</div>
+  <header class="mb-4">
+    <h1 class="text-3xl font-bold text-black">{{ fields.title.content }}</h1>
+  </header>
+  <section class="event-body text-base text-gray-800 leading-relaxed mb-4">
+    {{ fields.field_description.content }}
+  </section>
+
+  <div class="event-dates text-sm text-gray-700 mb-2">
+    <div><strong>Start Date:</strong> {{ fields.field_start_date.content }}</div>
+    <div><strong>End Date:</strong> {{ fields.field_end_date.content }}</div>
+  </div>
+
+  {% if fields.field_organizer.content %}
+    <div class="text-sm text-gray-700 mb-2">
+      <strong>Organizer:</strong> {{ fields.field_organizer.content }}
+    </div>
+  {% endif %}
+  {% if fields.field_category_of_event.content %}
+    <div class="text-sm text-gray-700 mb-4">
+      <strong>Category of event:</strong> {{ fields.field_category_of_event.content }}
+    </div>
+  {% endif %}
+
+
+{% set sessions = get_event_sessions(nid) %}
+
+<section class="event-sessions mt-6">
+  <h2 class="text-xl font-semibold text-black mb-4">Sessions:</h2>
+
+  {% if sessions is not empty %}
+    <ul class="space-y-4">
+      {% for session in sessions %}
+        <li class="border-b border-gray-300 pb-4">
+          <h3 class="text-lg font-bold text-gray-900 mb-1">{{ session.title }}</h3>
+
+          <div class="text-sm text-gray-700 mb-1">
+            <strong>Speaker:</strong> {{ session.speaker ?: 'Unknown' }}
+          </div>
+
+          <div class="text-sm text-gray-700 mb-1">
+            <strong>Start Date:</strong> {{ session.start_date ?: 'N/A' }}
+          </div>
+
+          <div class="text-sm text-gray-700">
+            <strong>End Date:</strong> {{ session.end_date ?: 'N/A' }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+    <p class="text-gray-500 italic">No sessions available for this event.</p>
+  {% endif %}
+</section>
+
+</article>

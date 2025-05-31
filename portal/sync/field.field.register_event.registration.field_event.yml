@@ -1,0 +1,29 @@
+uuid: a71462dc-d658-4217-95eb-dd63b2c0cd34
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.register_event.registration
+    - field.storage.register_event.field_event
+    - node.type.event
+id: register_event.registration.field_event
+field_name: field_event
+entity_type: register_event
+bundle: registration
+label: event
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      event: event
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

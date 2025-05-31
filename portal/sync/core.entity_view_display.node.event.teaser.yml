@@ -1,8 +1,9 @@
-uuid: c9772abc-1309-4360-b4c1-1a8b16766dec
+uuid: 38d1a531-74e9-4c63-a5d7-a8102eddaab4
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.field.node.event.field_category_of_event
     - field.field.node.event.field_description
     - field.field.node.event.field_end_date
@@ -15,25 +16,18 @@ dependencies:
     - datetime
     - text
     - user
-id: node.event.default
+id: node.event.teaser
 targetEntityType: node
 bundle: event
-mode: default
+mode: teaser
 content:
-  field_category_of_event:
-    type: entity_reference_label
+  field_description:
+    type: text_trimmed
     label: above
     settings:
-      link: true
+      trim_length: 20
     third_party_settings: {  }
-    weight: 7
-    region: content
-  field_description:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_end_date:
     type: datetime_default
@@ -42,7 +36,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_location:
     type: string
@@ -50,7 +44,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   field_organizer:
     type: entity_reference_label
@@ -58,7 +52,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   field_recurrence:
     type: entity_reference_label
@@ -66,7 +60,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_start_date:
     type: datetime_default
@@ -75,11 +69,12 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 6
     region: content
-hidden: {  }
+hidden:
+  field_category_of_event: true

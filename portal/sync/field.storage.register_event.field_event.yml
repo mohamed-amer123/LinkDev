@@ -1,0 +1,20 @@
+uuid: 9efe68c0-c908-422c-8f11-9d8f2015f187
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - node
+id: register_event.field_event
+field_name: field_event
+entity_type: register_event
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

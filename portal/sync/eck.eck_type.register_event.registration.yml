@@ -1,0 +1,9 @@
+uuid: 3703da9d-5668-4f43-a1c1-d3e951cfd7c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.register_event
+name: registration
+type: registration
+description: ''

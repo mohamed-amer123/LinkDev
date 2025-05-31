@@ -1,0 +1,12 @@
+<?php
+
+/**
+* Implements hook_menu_links_discovered_alter().
+*/
+
+function menus_menu_links_discovered_alter(&$links) {
+    $past_events_display = \Drupal::config("event_management.settings")->get("events_display");
+    if (!$past_events_display) {
+        unset($links["menus.past-events"]);
+    }
+}

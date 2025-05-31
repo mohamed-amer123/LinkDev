@@ -1,0 +1,29 @@
+uuid: bca47889-8127-4657-a8d8-16382f1e4d65
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.register_event.registration
+    - field.storage.register_event.field_registered_user
+id: register_event.registration.field_registered_user
+field_name: field_registered_user
+entity_type: register_event
+bundle: registration
+label: 'registered user'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

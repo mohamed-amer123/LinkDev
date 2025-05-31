@@ -96,3 +96,4 @@ core/
 /portal/web/sites/default/services.yml
 /portal/web/sites/default/sync/.htaccess
 /portal/web/modules/contrib
+/portal/web/themes/contrib
