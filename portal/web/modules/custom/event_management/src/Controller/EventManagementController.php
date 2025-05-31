@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\event_management\Controller;
 
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,6 +18,10 @@ final class EventManagementController extends ControllerBase {
    * Builds the response.
    */
   public function list() {
+    // Should be replaced with access checker.
+    if (\Drupal::currentUser()->isAnonymous()) {
+      throw new AccessDeniedHttpException('Access denied.');
+    }
     $timestamp = time();
     $datetime = (new \DateTime())->setTimestamp($timestamp);
     $formatted = $datetime->format('Y-m-d\TH:i:s'); 
