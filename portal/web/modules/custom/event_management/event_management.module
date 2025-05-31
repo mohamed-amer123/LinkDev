@@ -1,0 +1,33 @@
+<?php
+use \Drupal\Core\Form\FormStateInterface;
+
+/**
+* Implements hook_form_alter().
+*/
+
+function event_management_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    if (($form_id == "node_event_form" && $route_name == "node.add") || ($form_id = "node_event_edit_form" && $route_name == "entity.node.edit_form")) {
+        $form["#validate"][] = "event_management_validation";
+        $form["actions"]["submit"]["#access"] = true;
+    }
+}
+
+function event_management_validation(&$form, FormStateInterface $form_state){
+    $values = $form_state->getValues();
+    /**
+     * @var \Drupal\Core\Datetime\DrupalDateTime $end_date
+     */
+    $end_date = $values["field_end_date"][0]["value"];
+    /**
+     * @var \Drupal\Core\Datetime\DrupalDateTime $start_date
+     */
+    $start_date = $values["field_start_date"][0]["value"];
+    $current_date = time();
+    if ($start_date->getTimestamp() <= $current_date) {
+        $form_state->setErrorByName("field_start_date",t("Start Date must be future date."));
+    }
+    if ($start_date->getTimestamp() >= $end_date->getTimestamp()) {
+        $form_state->setErrorByName("field_end_date",t("End Date must be grater than Start Date."));
+    }
+}

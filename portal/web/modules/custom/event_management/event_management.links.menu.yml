@@ -1,0 +1,5 @@
+event_management.config:
+  title: Event Management Configurations
+  parent: system.admin_config_system
+  route_name: event_management.config
+  weight: 10

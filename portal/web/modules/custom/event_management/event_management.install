@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the event_management module.
+ */
+
+/**
+* Implements hook_schema().
+*/
+
+function event_management_schema() {
+    $schema['log_configuration'] = [
+        'fields' => [
+            'id' => [
+                'type' => 'serial',
+                'not null' => TRUE,
+            ],
+            "uid" => [
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0,
+            ],
+            'config_name' => [
+                'type' => 'varchar',
+                'length' => 255,
+                'default' => '',
+            ],
+            'key' => [
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => FALSE,
+            ],
+            'old_value' => [
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => FALSE,
+            ],
+            'new_value' => [
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => FALSE,
+            ],
+            'created' => [
+                'type' => 'int',
+                'not null' => TRUE,
+            ]
+        ],
+        'primary key' => ['id'],
+    ];
+    return $schema;
+}
