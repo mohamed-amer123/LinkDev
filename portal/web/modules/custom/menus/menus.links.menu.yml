@@ -1,28 +1,3 @@
-# # Simple link.
-# menus.node_add:
-#   title: Add content
-#   description: Add new content.
-#   menu_name: main
-#   route_name: node.add_page
-#   weight: 10
-
-# # Child link.
-# menus.node_add_article:
-#   title: Add article
-#   menu_name: main
-#   parent: menus.node_add
-#   route_name: node.add
-#   route_parameters:
-#     node_type: article
-#   weight: 20
-
-# # Dynamic link.
-# menus.user:
-#   menu_name: main
-#   class: Drupal\user\Plugin\Menu\LoginLogoutMenuLink
-#   weight: 30
-
-# External link.
 menus.events:
   title: events
   route_name: view.events.page_1
