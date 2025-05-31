@@ -14,6 +14,7 @@ dependencies:
   module:
     - datetime
     - path
+    - text
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -32,7 +33,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_description:
-    type: string_textarea
+    type: text_textarea
     weight: 1
     region: content
     settings:
@@ -54,14 +55,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_organizer:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 6
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_recurrence:
     type: options_select

@@ -1,0 +1,5 @@
+name: 'Menus'
+type: module
+description: 'add menus used to show events.'
+package: 'Custom'
+core_version_requirement: ^10 || ^11
