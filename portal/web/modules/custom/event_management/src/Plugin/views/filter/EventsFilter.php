@@ -100,7 +100,7 @@ class EventsFilter extends FilterPluginBase {
     }
     if (\Drupal::currentUser()->isAnonymous()) {
       $this->query->addWhereExpression($this->options['group'], 'node__field_category_of_event.field_category_of_event_target_id = (:values)', [':values' => $public_id]);
-    }elseif (!in_array("administrator",$user_roles) || !in_array("organizer_role",$user_roles)) {
+    }elseif (!in_array("administrator",$user_roles) && !in_array("organizer_role",$user_roles)) {
       $this->query->addWhereExpression($this->options['group'], 'node__field_category_of_event.field_category_of_event_target_id IN (:values[])', [':values[]' => [$public_id,$limited_id]]);
     }
 
