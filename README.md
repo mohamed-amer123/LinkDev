@@ -34,6 +34,8 @@ $databases['default']['default'] = array (
 
 - set your environment with [database] you just create and your server credentials
 
+- go to portal directory `cd portal/`
+
 - run `composer install` to install all dependincies required 
 
 - run `vendor\drush\drush\drush cim -y` to import enable all modules required for system and configurations
