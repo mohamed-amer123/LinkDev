@@ -24,6 +24,9 @@ final class TwigHandlerTwigExtension extends AbstractExtension {
     return $functions;
   }
 
+  /**
+   * Check if current user registered to current event or not from /event/%nid
+   */
   public function checkEventRegister($event_id) {
     $user = \Drupal::currentUser()->id();
     $user_entity = User::load($user);
@@ -46,6 +49,9 @@ final class TwigHandlerTwigExtension extends AbstractExtension {
     }
   }
 
+  /**
+   * Load all sessions related to current event
+   */
   public function getEventSessions($event_id) {
     $data = [];
     $sessions = \Drupal::entityTypeManager()->getStorage("node")->loadByProperties([

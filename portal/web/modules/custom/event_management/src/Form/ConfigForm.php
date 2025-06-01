@@ -78,15 +78,19 @@ final class ConfigForm extends ConfigFormBase {
       }
     }
     $config->save();
-    \Drupal::cache('menu')->deleteAll(); // Menu tree
-    \Drupal::service('router.builder')->rebuild(); // If route visibility changes
+    // Clear cache after change config values to make menu change dynamicly and list card for events .
+    \Drupal::cache('menu')->deleteAll();
+    \Drupal::service('router.builder')->rebuild();
     \Drupal::service('cache_tags.invalidator')->invalidateTags([
       'rendered',
-      'config:system.menu.main', // Replace with your menu name
+      'config:system.menu.main',
     ]);
     parent::submitForm($form, $form_state);
   }
 
+  /**
+   * Log changes to custom table log_configuration.
+   */
   function log_changes(FormStateInterface $form_state, $key){
     $old_value = $this->config(self::CONFIGNAME)->get($key);
     $new_value = $form_state->getValue($key);

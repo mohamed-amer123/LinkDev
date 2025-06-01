@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 final class EventManagementController extends ControllerBase {
 
   /**
-   * Builds the response.
+   * Api list for current and incomming 5 events
    */
   public function list() {
     // Should be replaced with access checker.
