@@ -1,0 +1,17 @@
+_core:
+  default_config_hash: jrmFf7oZwRnIDTGSyYGhKRflquoCNPA6moUPJDADDxo
+allowed_entity_types:
+  block_content: {  }
+  menu_link_content: {  }
+  node:
+    - event
+    - session
+  taxonomy_term:
+    - event_category
+    - recurrence_events
+  user: {  }
+  register_event:
+    - registration
+site_uuid_check: true
+import_directory_schema: temporary
+export_directory_schema: temporary
