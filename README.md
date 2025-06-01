@@ -42,6 +42,8 @@ $databases['default']['default'] = array (
 
 - set your environment with [database] you just create and your server credentials `portal\web\sites\defaults\settings.php` or create `portal\web\sites\defaults\settings.local.php`
 
+- run `vendor\drush\drush\drush en eck` to enable eck before import content inside it to avoid any issue 
+
 - run `vendor\drush\drush\drush cim -y` to import enable all modules required for system and configurations
 
 - run `vendor\drush\drush\drush cr` for chach rebuild to remove any cache
