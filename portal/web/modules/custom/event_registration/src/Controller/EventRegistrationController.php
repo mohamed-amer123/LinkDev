@@ -33,6 +33,9 @@ final class EventRegistrationController extends ControllerBase {
       ->getStorage('register_event')
       ->create($values);
     $register->save();
+    \Drupal::service('cache_tags.invalidator')->invalidateTags([
+      'rendered',
+    ]);
     $this->messenger()->addStatus('User registered to event.');
     return new RedirectResponse('/event/' . $event);
   }
