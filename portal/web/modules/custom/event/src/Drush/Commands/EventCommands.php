@@ -22,7 +22,7 @@ final class EventCommands extends DrushCommands {
   }
 
   /**
-   * Command description here.
+   * Command clean up events finished from year ago.
    */
   #[CLI\Command(name: 'event:cleanup', aliases: ['cl'])]
   public function cleanup() {

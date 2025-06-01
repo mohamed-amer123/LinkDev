@@ -6,23 +6,28 @@ use Drupal\views\ViewExecutable;
 
 /**
 * Implements hook_form_FORM_ID_alter().
+* add validation for add event form
 */
 function event_management_form_node_event_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
     $form["#validate"][] = "event_management_validation";
     $form["actions"]["submit"]["#access"] = true;
 }
+// add validation for edit event form
 function event_management_form_node_event_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
     $form["#validate"][] = "event_management_validation";
     $form["actions"]["submit"]["#access"] = true;
 }
+// add validation for add session form
 function event_management_form_node_session_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
     $form["#validate"][] = "event_management_session_validation";
     $form["actions"]["submit"]["#access"] = true;
 }
+// add validation for edit session form
 function event_management_form_node_session_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
     $form["#validate"][] = "event_management_session_validation";
     $form["actions"]["submit"]["#access"] = true;
 }
+// Event Validation.
 function event_management_validation(&$form, FormStateInterface $form_state){
     $values = $form_state->getValues();
     /**
@@ -41,6 +46,7 @@ function event_management_validation(&$form, FormStateInterface $form_state){
         $form_state->setErrorByName("field_end_date",t("End Date must be grater than Start Date."));
     }
 }
+// Session validation
 function event_management_session_validation(&$form, FormStateInterface $form_state){
     $values = $form_state->getValues();
     $event_id = $values["field_belongs_to_event"][0]["target_id"];
@@ -70,6 +76,7 @@ function event_management_session_validation(&$form, FormStateInterface $form_st
 
 /**
  * Implements hook_views_data_alter().
+ * add custom filter to views
  */
 function event_management_views_data_alter(&$data): void {
   $data['node_field_data']['field_event_filter'] =

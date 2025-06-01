@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 final class EventRegistrationController extends ControllerBase {
 
   /**
-   * Builds the response.
+   * This register current user to specific event and save it in ECK register_event.
    */
   public function register_user($event): RedirectResponse|Response {
     $user = \Drupal::currentUser()->id();
@@ -24,19 +24,15 @@ final class EventRegistrationController extends ControllerBase {
     if (!$user_entity || !$event_node || $event_node->bundle() !== 'event') {
       return new Response('Invalid user or event.', 400);
     }
-
     $values = [
       'type' => 'registration', 
       'field_registered_user' => $user_entity->id(),
       'field_event' => $event_node->id(),
     ];
-
     $register = \Drupal::entityTypeManager()
       ->getStorage('register_event')
       ->create($values);
-
     $register->save();
-
     $this->messenger()->addStatus('User registered to event.');
     return new RedirectResponse('/event/' . $event);
   }

@@ -79,7 +79,6 @@ class EventsFilter extends FilterPluginBase {
    * Check what current user have access to.
    */
   public function query(): void {
-    // Check is not admin role.
     $user_roles = \Drupal::currentUser()->getRoles();
     $configuration = [
       'left_table' => 'node_field_data',
