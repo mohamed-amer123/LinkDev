@@ -17,8 +17,8 @@ $databases['default']['default'] = array (
   'username' => 'YOUR_DATABASE_USERNAME',
   'password' => 'YOUR_DATABASE_PASSWORD',
   'prefix' => '',// Optional
-  'host' => 'YOUR_DATABASE_HOST',
-  'port' => 'YOUR_DATABASE_PORT',
+  'host' => 'YOUR_DATABASE_HOST', // default localhost
+  'port' => 'YOUR_DATABASE_PORT', // default 3306
   'isolation_level' => 'READ COMMITTED',
   'driver' => 'mysql',
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
@@ -30,19 +30,25 @@ $databases['default']['default'] = array (
 
 - clone repo use ` git clone https://github.com/USER/REPO `
 
-- import database from `database/event_sys.sql` using ui or by command `mysql –u USERNAME –p PASSWORD [database] < PATHTOFILE.sql`
-
-- set your environment with [database] you just create and your server credentials
+- import database from `database/event_sys.sql` using ui or by command 
+  - enter your mysql `mysql -u USERNAME -p PASSWORD` 
+  - create database `CREATE DATABASE [your-database-name];`
+  - exit `exit;`
+  - import `mysql –u USERNAME –p PASSWORD [your-database-name] < PATHTOFILE.sql`
 
 - go to portal directory `cd portal/`
 
 - run `composer install` to install all dependincies required 
+
+- set your environment with [database] you just create and your server credentials `portal\web\sites\defaults\settings.php` or create `portal\web\sites\defaults\settings.local.php`
 
 - run `vendor\drush\drush\drush cim -y` to import enable all modules required for system and configurations
 
 - run `vendor\drush\drush\drush cr` for chach rebuild to remove any cache
 
 - import content `vendor/drush/drush/drush content:import ../scs-export/content.zip` to import Events, sessions, terms, users, menus
+
+- run `vendor\drush\drush\drush cr` for chach rebuild to remove any cache
 
 ## Support
 

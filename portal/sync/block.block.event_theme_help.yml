@@ -1,4 +1,4 @@
-uuid: 70e84004-26bc-41c8-a016-168e41ec1ce5
+uuid: d797785d-df6b-4ac1-bd67-2572bb36df36
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,7 @@ _core:
   default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
 id: event_theme_help
 theme: event_theme
-region: sidebar_first
+region: content_above
 weight: 0
 provider: null
 plugin: help_block

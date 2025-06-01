@@ -1,4 +1,4 @@
-uuid: 1d5ba147-69e9-4090-a24c-02c5cb420a74
+uuid: 0484df08-e44c-41ed-811d-ef65e3a006b0
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,7 @@ _core:
   default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
 id: event_theme_page_title
 theme: event_theme
-region: sidebar_first
+region: content_above
 weight: -5
 provider: null
 plugin: page_title_block
