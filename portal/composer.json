@@ -22,6 +22,7 @@
         "drupal/core-recommended": "^11.1",
         "drupal/devel": "^5.3",
         "drupal/eck": "^2.1@beta",
+        "drupal/menu_per_role": "^1.8",
         "drush/drush": "^13.6"
     },
     "conflict": {
