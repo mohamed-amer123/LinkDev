@@ -36,6 +36,8 @@ $databases['default']['default'] = array (
   - exit `exit;`
   - import `mysql –u USERNAME –p PASSWORD [your-database-name] < PATHTOFILE.sql`
 
+- use `database/event_sys_full.sql` to use demo database without need to run `cim or import:content` 
+
 - go to portal directory `cd portal/`
 
 - run `composer install` to install all dependincies required 
